@@ -14,7 +14,7 @@ describe("formatDuration", () => {
     expect(formatDuration(90)).toBe("1h 30m");
   });
 
-  it("mostra horas e minutos quando há ambos", () => {
+  it("mostra só horas em durações longas", () => {
     expect(formatDuration(240)).toBe("4h");
   });
 });
@@ -29,10 +29,10 @@ describe("formatPrice", () => {
 
 describe("formatDateTime", () => {
   it("usa a hora de Lisboa no inverno", () => {
-    expect(formatDateTime(new Date("2026-11-12T10:00:00Z"))).toContain("10:00");
+    expect(formatDateTime("2026-11-12T10:00:00Z")).toContain("10:00");
   });
 
   it("usa a hora de Lisboa no verão (UTC+1)", () => {
-    expect(formatDateTime(new Date("2027-08-19T09:00:00Z"))).toContain("10:00");
+    expect(formatDateTime("2027-08-19T09:00:00Z")).toContain("10:00");
   });
 });

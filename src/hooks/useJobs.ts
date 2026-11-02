@@ -1,0 +1,29 @@
+import { useState, useEffect } from "react";
+import type { JobRequest } from "../types.ts";
+import { fetchJobs } from "../api/fetchJobs.ts";
+
+type Status = "loading" | "ready" | "error";
+
+export function useJobs() {
+  const [jobs, setJobs] = useState<JobRequest[]>([]);
+  const [status, setStatus] = useState<Status>("loading");
+
+  useEffect(() =>{
+    let cancelled = false; // evita setState se o componente já desmontou
+    fetchJobs()
+      .then((jobs) => {
+        if (cancelled) return;
+        setJobs(jobs);
+        setStatus("ready");
+      })
+      .catch(() => {
+        if (cancelled) return;
+        setStatus("error");
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  return { jobs, status };
+}
