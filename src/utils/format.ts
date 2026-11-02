@@ -4,11 +4,12 @@ const euro = new Intl.NumberFormat('pt-PT', {
 });
 const date = new Intl.DateTimeFormat('pt-PT', {
   dateStyle: 'medium',
-  timeStyle: 'short'
+  timeStyle: 'short',
+  timeZone: 'Europe/Lisbon'
 });
 
 export const formatPrice = (priceCents: number) => euro.format(priceCents / 100);
-export const formatDateTime = (startsAt: Date) => date.format(new Date(startsAt));
+export const formatDateTime = (startsAt: string) => date.format(new Date(startsAt));
 
 export function formatDuration(durationMin: number) {
   const hours = Math.floor(durationMin / 60);

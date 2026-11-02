@@ -84,4 +84,4 @@ const jobs: JobRequest[] = [
   },
 ];
 
-export default jobs;
+export { jobs };
