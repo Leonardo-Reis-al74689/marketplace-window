@@ -8,12 +8,12 @@ export function useJobs() {
   const [jobs, setJobs] = useState<JobRequest[]>([]);
   const [status, setStatus] = useState<Status>("loading");
 
-  useEffect(() =>{
+  useEffect(() => {
     let cancelled = false; // evita setState se o componente já desmontou
     fetchJobs()
-      .then((jobs) => {
+      .then((result) => {
         if (cancelled) return;
-        setJobs(jobs);
+        setJobs(result);
         setStatus("ready");
       })
       .catch(() => {
