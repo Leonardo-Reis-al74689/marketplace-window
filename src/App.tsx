@@ -36,6 +36,7 @@ export default function App() {
           />
         </>
       )}
+      {status === "error" && <p role="alert">Não foi possível carregar os pedidos. Tenta novamente mais tarde.</p>}
     </main>
   );
 }
