@@ -11,6 +11,12 @@ export default function App() {
 
   const visibleJobs = city ? jobs.filter((job) => job.city === city) : jobs;
 
+  // O botão "Limpar filtro" desaparece, por isso o foco passa para o select
+  const clearFilter = () => {
+    setCity("");
+    document.getElementById("city-filter")?.focus();
+  };
+
   return (
     <main>
       <h1>Pedidos disponíveis</h1>
@@ -21,7 +27,13 @@ export default function App() {
           <p aria-live="polite">
             {visibleJobs.length} {visibleJobs.length === 1 ? "pedido" : "pedidos"}
           </p>
-          <JobList jobs={visibleJobs} onAccept={accept} />
+          <JobList
+            jobs={visibleJobs}
+            hasAnyJobs={jobs.length > 0}
+            city={city}
+            onAccept={accept}
+            onClearFilter={clearFilter}
+          />
         </>
       )}
     </main>
