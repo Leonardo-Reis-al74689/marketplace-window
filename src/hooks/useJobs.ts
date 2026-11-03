@@ -25,5 +25,9 @@ export function useJobs() {
     };
   }, []);
 
-  return { jobs, status };
+  const accept = (id: string) => {
+    setJobs(current => current.filter(job => job.id !== id));
+  }
+
+  return { jobs, status, accept };
 }

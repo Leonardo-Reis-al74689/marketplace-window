@@ -3,9 +3,10 @@ import { formatDateTime, formatDuration, formatPrice } from "../utils/format";
 
 type JobCardProps = {
   job: JobRequest;
+  onAccept: (id: string) => void;
 };
 
-export default function JobCard({ job }: JobCardProps) {
+export default function JobCard({ job, onAccept }: JobCardProps) {
   const titleId = `job-${job.id}-title`;
 
   return (
@@ -35,6 +36,13 @@ export default function JobCard({ job }: JobCardProps) {
           <dd>{formatPrice(job.priceCents)}</dd>
         </div>
       </dl>
+      <button
+        type="button"
+        aria-label={`Aceitar pedido de ${job.service} em ${job.city}`}
+        onClick={() => onAccept(job.id)}
+      >
+        Aceitar
+      </button>
     </article>
   );
 }
