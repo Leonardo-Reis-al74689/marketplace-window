@@ -1,4 +1,6 @@
 import { useJobs } from "./hooks/useJobs.ts";
+import JobList from "./components/JobList";
+import "./App.css";
 
 export default function App() {
   const { jobs, status } = useJobs();
@@ -9,7 +11,7 @@ export default function App() {
   return (
     <main>
       <h1>Pedidos</h1>
-      <p>{jobs.length} pedidos</p>
+      <JobList jobs={jobs} />
     </main>
   );
 }
