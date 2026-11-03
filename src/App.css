@@ -5,6 +5,12 @@ body {
   color: #1a1a1a;
 }
 
+/* Contorno visível ao navegar por teclado (select e botões dos próximos commits) */
+:focus-visible {
+  outline: 3px solid #1a5fb4;
+  outline-offset: 2px;
+}
+
 /* Conteúdo centrado com largura limitada para facilitar a leitura */
 main {
   max-width: 48rem;

@@ -5,13 +5,11 @@ import "./App.css";
 export default function App() {
   const { jobs, status } = useJobs();
 
-  if (status === "loading") return <p role="status">A carregar pedidos...</p>;
-  if (status === "error") return null;
-
   return (
     <main>
-      <h1>Pedidos</h1>
-      <JobList jobs={jobs} />
+      <h1>Pedidos disponíveis</h1>
+      {status === "loading" && <p role="status">A carregar pedidos...</p>}
+      {status === "ready" && <JobList jobs={jobs} />}
     </main>
   );
 }
