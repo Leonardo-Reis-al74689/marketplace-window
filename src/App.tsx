@@ -1,15 +1,29 @@
 import { useJobs } from "./hooks/useJobs.ts";
+import { useState } from "react";
 import JobList from "./components/JobList";
+import CityFilter from "./components/CityFilter";
 import "./App.css";
+import { cities } from "./data/cities.ts";
 
 export default function App() {
   const { jobs, status } = useJobs();
+  const [city, setCity] = useState("");
+
+  const visibleJobs = city ? jobs.filter((job) => job.city === city) : jobs;
 
   return (
     <main>
       <h1>Pedidos disponíveis</h1>
       {status === "loading" && <p role="status">A carregar pedidos...</p>}
-      {status === "ready" && <JobList jobs={jobs} />}
+      {status === "ready" && (
+        <>
+          <CityFilter value={city} onChange={setCity} cities={cities} />
+          <p aria-live="polite">
+            {visibleJobs.length} {visibleJobs.length === 1 ? "pedido" : "pedidos"}
+          </p>
+          <JobList jobs={visibleJobs} />
+        </>
+      )}
     </main>
   );
 }
