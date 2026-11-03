@@ -6,7 +6,7 @@ import "./App.css";
 import { cities } from "./data/cities.ts";
 
 export default function App() {
-  const { jobs, status } = useJobs();
+  const { jobs, status, accept } = useJobs();
   const [city, setCity] = useState("");
 
   const visibleJobs = city ? jobs.filter((job) => job.city === city) : jobs;
@@ -21,7 +21,7 @@ export default function App() {
           <p aria-live="polite">
             {visibleJobs.length} {visibleJobs.length === 1 ? "pedido" : "pedidos"}
           </p>
-          <JobList jobs={visibleJobs} />
+          <JobList jobs={visibleJobs} onAccept={accept} />
         </>
       )}
     </main>
