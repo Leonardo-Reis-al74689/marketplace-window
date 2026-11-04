@@ -6,7 +6,7 @@ import "./App.css";
 import { cities } from "./data/cities.ts";
 
 export default function App() {
-  const { jobs, status, accept } = useJobs();
+  const { jobs, status, accept, reload } = useJobs();
   const [city, setCity] = useState("");
 
   const visibleJobs = city ? jobs.filter((job) => job.city === city) : jobs;
@@ -38,7 +38,16 @@ export default function App() {
           />
         </>
       )}
-      {status === "error" && <p role="alert">Não foi possível carregar os pedidos. Tenta novamente mais tarde.</p>}
+      {status === "error" && (
+        <div className="empty-state">
+          <p role="alert">
+            Não foi possível carregar os pedidos. Tenta novamente mais tarde.
+          </p>
+          <button type="button" onClick={reload}>
+            Tentar de novo
+          </button>
+        </div>
+      )}
     </main>
   );
 }
