@@ -18,10 +18,10 @@ export default function JobList({
 }: JobListProps) {
   if (jobs.length === 0) {
     if (!hasAnyJobs) {
-      return <p>Não há pedidos disponíveis neste momento.</p>;
+      return <p className="empty-state">Não há pedidos disponíveis neste momento.</p>;
     }
     return (
-      <div>
+      <div className="empty-state">
         <p>Não há pedidos em {city}.</p>
         <button type="button" onClick={onClearFilter}>
           Limpar filtro
