@@ -23,10 +23,12 @@ export default function App() {
       {status === "loading" && <p role="status">A carregar pedidos...</p>}
       {status === "ready" && (
         <>
-          <CityFilter value={city} onChange={setCity} cities={cities} />
-          <p aria-live="polite">
-            {visibleJobs.length} {visibleJobs.length === 1 ? "pedido" : "pedidos"}
-          </p>
+          <div className="toolbar">
+            <CityFilter value={city} onChange={setCity} cities={cities} />
+            <p aria-live="polite">
+              {visibleJobs.length} {visibleJobs.length === 1 ? "pedido" : "pedidos"}
+            </p>
+          </div>
           <JobList
             jobs={visibleJobs}
             hasAnyJobs={jobs.length > 0}
