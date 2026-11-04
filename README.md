@@ -27,6 +27,5 @@ npm run lint
 ## O que faria a seguir
 
 - Ligar a um backend real: `GET` e `POST` de aceitar, com estado pendente por pedido e tratamento de conflitos (pedido já aceite por outro).
-- Botão "Tentar de novo" no erro e persistência do filtro na URL.
 - Com muitos pedidos: paginação no servidor, e debounce numa pesquisa por texto.
 - Testes end-to-end (Playwright) e CI com lint, build e testes.
